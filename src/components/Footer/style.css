@@ -1,0 +1,31 @@
+.footer {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 16px 248px;
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+}
+.left, .center, .right {
+    display: inline-block;
+}
+.left {
+    width: 376px;
+}
+.left > * {
+    display: inline-block;
+    vertical-align: bottom;
+}
+.left p {
+    margin-left: 12px;
+}
+.center {
+    width: 569px;
+}
+.right {
+    width: 71px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}

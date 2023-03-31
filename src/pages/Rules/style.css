@@ -1,0 +1,96 @@
+html {
+    scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+}
+.covercontainer {
+    position: relative;
+    box-sizing: border-box;
+    height: 867px;
+    width: 100%;
+    padding: 16px;
+    margin-bottom: 56px;
+}
+.coverblock {
+    position: absolute;
+    height: 835px;
+    width: 1480px;
+    background-image: url("../../images/coverbackground.png");
+}
+.coverblock h1 {
+    position: absolute;
+}
+.coverblock h1:nth-child(1) {
+    top: 370px;
+    left: 711px;
+    transform: rotate(-1deg);
+}
+.coverblock h1:nth-child(2) {
+    top: 402px;
+    left: 500px;
+    transform: rotate(1deg);
+}
+.coverblock h1:nth-child(3) {
+    top: 434.5px;
+    left: 651px;
+}
+.coverblock h1:nth-child(4) {
+    top: 740px;
+    left: 601px;
+    transform: rotate(-2deg);
+
+}
+.buttoncover {
+    width: 40px;
+    height: 40px;
+    background-color: var(--main-white);
+    border-radius: 20px;   
+    position: absolute;
+    top: 784px;
+    left: calc(50% - 20px);
+    transition: all .4s ease;
+}
+.buttoncover:hover {
+    background-color: var(--main-white-hover);
+    transition: all .2s ease;
+}
+.buttoncover a {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.text {
+    width: 1016px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.block {
+    width: 752px;
+    margin-bottom: 40px;
+}
+.gap {
+    height: 32px;
+}
+.block h1 {
+    margin-bottom: 32px;
+}
+.menu {
+    position: fixed;
+    margin-left: 20px;
+    margin-top: 315px;
+}
+
+.menuitem a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    padding: 4px;
+}
+
+.menuitem h3 {
+    margin-right: 8px;
+}
