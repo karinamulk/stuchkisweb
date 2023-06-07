@@ -21,6 +21,10 @@
 
     --text-p-size: 16px;
     --text-p-lineheight: 16px;
+
+    --text-cap-size: 12px;
+    --text-cap-lineheight: 12px;
+
     
   }
 
@@ -40,7 +44,7 @@
     letter-spacing: -0.04em;
   }
 
-  .h1-text-style {
+  h1 {
     font-family: 'Inter Tight';
     font-size: var(--text-h1-size);
     font-weight: var(--text-weight);
@@ -78,4 +82,8 @@
   }
   body {
     background-color: var(--main-beige);
+  }
+  * {
+    font-family: 'Inter Tight';
+    color: var(--main-darkblue);
   }

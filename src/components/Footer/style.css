@@ -1,7 +1,12 @@
+.containerfooter {
+ display: flex;
+ justify-content: center;
+ margin-top: 88px;
+}
 .footer {
-    width: 100%;
+    width: 1016px;
     box-sizing: border-box;
-    padding: 16px 248px;
+    padding: 16px 0px;
     height: 120px;
     display: flex;
     justify-content: space-between;

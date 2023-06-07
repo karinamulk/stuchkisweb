@@ -1,0 +1,19 @@
+.primaryBtn {
+    background: var(--main-lightblue);
+    color: var(--main-darkblue);
+    border-radius: 12px;
+    height: 72px;
+}
+.quatenaryBtn {
+    color: var(--main-darkblue);
+    height: 24px;
+    padding: 4px 4px;
+    background: none;
+    border: none;
+    display: flex;
+    width: fit-content;
+    font-size: var(--text-h3-size);
+    line-height: var(--text-h3-lineheight);
+    text-transform: uppercase;
+    cursor: pointer;
+}
