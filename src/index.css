@@ -87,3 +87,9 @@
     font-family: 'Inter Tight';
     color: var(--main-darkblue);
   }
+  .pending {
+    color: var(--main-green)
+  }
+  .active {
+    color: var(--main-darkblue) !important;
+  }

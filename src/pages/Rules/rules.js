@@ -1,8 +1,12 @@
 import "./style.css";
-import ArrowDown from "../../components/Icons/ArrowDown";
-import ChevronDown from "../../components/Icons/ChevronDown";
+import ArrowDown from "../../components/Icons/Q_ArrowDown";
+import ChevronDown from "../../components/Icons/Q_ChevronDown";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
+
 
 const RulesScreen = () => { 
+
     return (
         <>
             <div className="menu">

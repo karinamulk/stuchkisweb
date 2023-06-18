@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import Sign from "./components/Q_Sign";
 import Search from "../Icons/Q_Search";
+import { NavLink } from "react-router-dom";
 
 const MainWrapper = styled.div`
   display: flex;
@@ -41,15 +42,54 @@ const Navbar = () => {
         <Sign></Sign>
       </Link>
       <Part>
-        <Link to={`/`} style={{color: "hsla(152, 7%, 63%, 1)", textDecoration: "none"}}>Штучкисы</Link>
-        <Link to={`/collections`} style={{color: "hsla(152, 7%, 63%, 1)", textDecoration: "none"}}>Коллекшнс</Link>
-        <Link style={{color: "hsla(152, 7%, 63%, 1)", textDecoration: "none"}}>Юзерс</Link>
-        <Link to={`/`}  style={{marginTop: "4px"}}>
+        <NavLink
+          to="/items"
+          style={{color: "var(--main-green)", textDecoration: "none" }}
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+        >
+          Штучкисы
+        </NavLink>
+
+        <NavLink
+          to="/collections"
+          style={{color: "var(--main-green)", textDecoration: "none" }}
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+        >
+          Коллекшнс
+        </NavLink>
+        <NavLink
+          to="/"
+          style={{color: "var(--main-green)", textDecoration: "none" }}
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+        >
+          Юзерс
+        </NavLink>
+        <NavLink
+          to="/"
+          style={{ marginTop: "4px"}}
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+        >
           <Search></Search>
-        </Link>
+        </NavLink>
       </Part>
       <ProfilePart>
-        <Link to={`/`} style={{color: "hsla(152, 7%, 63%, 1)", textDecoration: "none"}}>Я</Link>
+        <NavLink
+          to="/"
+          style={{color: "var(--main-green)", textDecoration: "none" }}
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+        >
+          Я
+        </NavLink>
       </ProfilePart>
     </MainWrapper>
   );

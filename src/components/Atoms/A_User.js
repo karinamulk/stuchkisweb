@@ -20,7 +20,7 @@ const User = ({ id, username, avatarurl, onClick = () => null }) => {
         src={avatarurl}
         alt="placeholder-image"
       />
-      <p style={{ fontSize: "24px", lineHeight: "24px" }}>{username}</p>
+      <p style={{ fontSize: "24px", lineHeight: "24px", margin: 0 }}>{username}</p>
     </Wrapper>
   );
 };

@@ -14,6 +14,7 @@ const MainWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;
+
 const Content = styled.div`
   width: 1016px;
 `;
@@ -28,6 +29,8 @@ const RowWrapper = styled.div`
   overflow: hidden;
   align-items: center;
   cursor: pointer;
+  padding: 16px;
+  box-sizing: border-box;
 `;
 const ColumnWrapper = styled.div`
   display: flex;
@@ -48,6 +51,7 @@ const SortPart= styled.div `
 `;
 const Title = styled.h1``;
 
+
 const TableDescription = styled.div`
   width: 1016px;
   padding: 0 12px;
@@ -60,59 +64,58 @@ const Note = styled.p`
   color: hsla(152, 7%, 63%, 1);
 `;
 const Userpart = styled.div``;
-const MainScreen = () => {
-  const [reportits, setReportits] = useState([]);
+
+const Users = () => {
+  const [reportusers, setReportusers] = useState([]);
   const navigate = useNavigate();
-  const [collections, setCollections] = useState([]);
   const [selectedSort, setSelectedSort] = useState("К рассмотрению");
 
   const handleReportClick = (reportData) => {
-    navigate("/itemreport", { state: { reportData } });
+    navigate("/userreport", { state: { reportData } });
   };
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/v1/reportits")
+      .get("http://localhost:3000/api/v1/reportusers")
       .then(({ data }) => {
         console.log(data);
-        setReportits(data.data);
+        setReportusers(data.data);
       })
       .catch((error) => console.error(error))
       .finally(() => console.log("false"));
   }, []);
   const list = () => {
-    let filteredReportits = reportits;
+
+    let filteredReportusers = reportusers;
 
     if (selectedSort === "К рассмотрению") {
-      filteredReportits = filteredReportits.filter(
-        (reportit) => reportit.status === "new"
+      filteredReportusers = filteredReportusers.filter(
+        (reportuser) => reportuser.status === "new"
       );
     } else if (selectedSort === "Принятые") {
-      filteredReportits = filteredReportits.filter(
-        (reportit) => reportit.status === "accepted"
+      filteredReportusers = filteredReportusers.filter(
+        (reportuser) => reportuser.status === "accepted"
       );
     } else if (selectedSort === "Отклоненные") {
-      filteredReportits = filteredReportits.filter(
-        (reportit) => reportit.status === "declared"
+      filteredReportusers = filteredReportusers.filter(
+        (reportuser) => reportuser.status === "declared"
       );
     }
 
-    return filteredReportits.map((reportit) => {
+    return filteredReportusers.map((reportuser) => {
       return (
         <RowWrapper
-          key={reportit.id}
-          onClick={() => handleReportClick(reportit)}
+          key={reportuser.id}
+          onClick={() => handleReportClick(reportuser)}
         >
-          <img
+          {/* <p
             style={{
-              width: 56,
-              height: 56,
-              objectFit: "fit",
-              marginRight: "72px",
+              width: "104px",
+              marginRight: "8px",
             }}
-            src={`http://localhost:3000${reportit.item.image.url}`}
-            alt="placeholder-image"
-          />
+          >
+            {reportuser.collection.title}
+          </p> */}
           <p
             style={{
               fontSize: "24px",
@@ -121,12 +124,12 @@ const MainScreen = () => {
               marginRight: "8px",
             }}
           >
-            {reportit.object}
+            {reportuser.object}
           </p>
           <Userpart style={{ width: "248px", marginRight: "8px" }}>
             <User
-              username={reportit.user.username}
-              avatarurl={`http://localhost:3000${reportit.user.avatar.url}`}
+              username={reportuser.user.username}
+              avatarurl={`http://localhost:3000${reportuser.user.avatar.url}`}
             ></User>
           </Userpart>
 
@@ -138,16 +141,17 @@ const MainScreen = () => {
               textAlign: "center",
             }}
           >
-            {reportit.number}
+            {reportuser.number}
           </p>
         </RowWrapper>
       );
     });
   };
+
   return (
     <MainWrapper>
       <Content>
-        <TopBlock>
+      <TopBlock>
           <Title style={{ width: "364px" }}>Все жалобы</Title>
           <SortPart>
             <ToggleButtonSet
@@ -163,7 +167,7 @@ const MainScreen = () => {
           </SortPart>
         </TopBlock>
         <TableDescription>
-          <Note style={{ width: "108px", marginRight: "8px" }}>Штучкис</Note>
+          <Note style={{ width: "108px", marginRight: "8px" }}>Коллекция</Note>
           <Note style={{ width: "248px", marginRight: "8px" }}>
             Предмет жалобы
           </Note>
@@ -177,4 +181,4 @@ const MainScreen = () => {
     </MainWrapper>
   );
 };
-export default MainScreen;
+export default Users;

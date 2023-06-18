@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import User from "../Atoms/A_User";
+import User from "../../Atoms/A_User";
+import "./M_UserBlock.css";
 
 const Wrapper = styled.div`
     width: 100%;
@@ -13,9 +14,20 @@ const Wrapper = styled.div`
     padding: 0 12px;
 `;
 
-const Userblock = ({id, username, avatarurl, onClick=() => null}) => {
+const Userblock = ({id, type, username, avatarurl, onClick=() => null}) => {
+    const getType = () => {
+        switch (type) {
+          case "white": {
+            return "white";
+          }
+          default: {
+            return "";
+          }
+        }
+      };
+
     return (
-        <Wrapper onClick={onClick}>
+        <Wrapper className={`${getType()}`} onClick={onClick}>
             <User avatarurl={avatarurl} username={username}></User>
             <p style={{color: "var(--main-green)"}}>Владелец</p>
         </Wrapper>

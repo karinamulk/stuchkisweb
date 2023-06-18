@@ -1,0 +1,19 @@
+.smallBtn {
+    height: 40px;
+    width: 40px;
+    background-color: var(--main-white);
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.bigBtn {
+    height: 48px;
+    width: 48px;
+    background-color: var(--main-white);
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}

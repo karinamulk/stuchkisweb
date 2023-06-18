@@ -4,6 +4,7 @@ const Button = ({
   title = "",
   onClick = () => null,
   type = "primary",
+  typeText = "",
   icon = null,
   isDisabled,
   ...restProps
@@ -27,13 +28,23 @@ const Button = ({
       }
     }
   };
+  const getTypeText = () => {
+    switch (typeText) {
+      case "colored": {
+        return "coloredText";
+      }
+      default: {
+        return "";
+      }
+    }
+  };
   return (
     <button
       className={`${getType()}`}
       style={{ ...restProps?.style, opacity: isDisabled ? 0.5 : 1 }}
       onClick={onClick}
     >
-      <span>{title}</span>
+      <span className={`${getTypeText()}`} >{title}</span>
       {icon && icon}
     </button>
   );

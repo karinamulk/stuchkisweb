@@ -7,7 +7,11 @@ import Root from "./pages/root";
 import MainScreen from "./pages/Item/items";
 import Itemreport from "./pages/Item/itemreport";
 import Collections from "./pages/Collection/collections";
+import Collectionreport from "./pages/Collection/collectionreport";
 import Item from "./pages/Item/item";
+import RulesScreen from "./pages/Rules/rules";
+import InstructionScreen from "./pages/Rules/instruction";
+import Collection from "./pages/Collection/collection";
 
 const root = createRoot(document.getElementById("root"));
 
@@ -16,9 +20,13 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     children: [
-      { index: true, element: <MainScreen /> },
+      { index: true, element: <InstructionScreen /> },
       {
-        path: "report",
+        path: "items",
+        element: <MainScreen />,
+      },
+      {
+        path: "itemreport",
         element: <Itemreport />,
       },
       {
@@ -26,8 +34,20 @@ const router = createBrowserRouter([
         element: <Collections />,
       },
       {
+        path: "collectionreport",
+        element: <Collectionreport />,
+      },
+      {
         path: "item",
         element: <Item />,
+      },
+      {
+        path: "collection",
+        element: <Collection />,
+      },
+      {
+        path: "rules",
+        element: <RulesScreen />,
       },
     ],
     

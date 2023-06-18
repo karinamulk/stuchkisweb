@@ -1,8 +1,28 @@
 .primaryBtn {
-    background: var(--main-lightblue);
+    background-image: url("../../../images/Buttonbackground.jpg");
+    background-size: 100% 100%;
+    height: 72px;
     color: var(--main-darkblue);
     border-radius: 12px;
+    border: none;
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-lineheight);
+    letter-spacing: 0.57px;
+    width: 100%;
+    cursor: pointer;
+
+}
+.secondaryBtn {
+    background-color: var(--main-white);
     height: 72px;
+    color: var(--main-darkblue);
+    border-radius: 12px;
+    border: none;
+    font-size: var(--text-h2-size);
+    line-height: var(--text-h2-lineheight);
+    letter-spacing: 0.57px;
+    width: 100%;
+    cursor: pointer;
 }
 .quatenaryBtn {
     color: var(--main-darkblue);
@@ -16,4 +36,28 @@
     line-height: var(--text-h3-lineheight);
     text-transform: uppercase;
     cursor: pointer;
+    gap: 4px;
+}
+.tertiaryBtn {
+    height: 40px;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    background-color: var(--main-white);
+    border: none;
+    display: flex;
+    width: fit-content;
+    font-size: var(--text-p-size);
+    line-height: var(--text-p-lineheight);
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.coloredText {
+    color: transparent;    
+	-webkit-background-clip: text;
+	background-clip: text;
+	background-image: url("../../../images/gradient.jpg");
+    background-size: 200%;
+    background-position: center 65%;
+    background-repeat: no-repeat;
 }
