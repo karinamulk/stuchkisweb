@@ -41,6 +41,11 @@ const Caption = styled.p`
   line-height: var(--text-cap-lineheight);
   margin: 0;
 `;
+const Infoblock = styled.div`
+display: flex;
+flex-direction: column;
+gap: 16px;
+`;
 
 const ComplaintBlock = ({
   id,
@@ -73,8 +78,9 @@ const ComplaintBlock = ({
           icon={<Link />}
         ></Button>
       </Header>
+      <Infoblock>
       <Info>
-        <InfoItem style={{ width: "236px" }}>
+        <InfoItem style={{ width: "236px", marginBottom: "8px" }}>
           <Caption>Статус</Caption>
           {status==="new" && (
           <p style={{ margin: 0 }}>На рассмотрении</p> )}
@@ -83,15 +89,15 @@ const ComplaintBlock = ({
           {status==="declared" && (
           <p style={{ margin: 0 }}>Отклонена</p> )}
         </InfoItem>
-        <InfoItem style={{ width: "248px" }}>
+        <InfoItem style={{ width: "248px", marginBottom: "8px" }}>
           <Caption>Отправитель</Caption>
           <User avatarurl={avatarurl} username={username}></User>
         </InfoItem>
-        <InfoItem style={{ gap: "4px", width: "248px" }}>
+        <InfoItem style={{width: "248px", marginBottom: "8px" }}>
           <Caption>Предмет жалобы</Caption>
           <h2 style={{ margin: 0 }}>{object}</h2>
         </InfoItem>
-        <InfoItem style={{ width: "236px" }}>
+        <InfoItem style={{ width: "236px", marginBottom: "8px" }}>
           <Caption>Указанная причина</Caption>
           <p style={{ margin: 0 }}>{reason}</p>
         </InfoItem>
@@ -111,7 +117,9 @@ const ComplaintBlock = ({
 
         ></Button>
       </Buttons>
+      
       )}
+      </Infoblock>
       
     </Wrapper>
   );

@@ -3,6 +3,7 @@ import ArrowDown from "../../components/Icons/Q_ArrowDown";
 import ChevronDown from "../../components/Icons/Q_ChevronDown";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import Bird from "../../images/Q_Bird";
 
 
 const RulesScreen = () => { 
@@ -28,10 +29,13 @@ const RulesScreen = () => {
             </div>
             <div className="covercontainer">
                 <div className="coverblock">
+                    
+                    
                     <h1 className="arial-text-style">ХЭЙ!</h1>
                     <h1 className="arial-text-style">Я расскажу правила сообщества</h1>
                     <h1 className="arial-text-style">Štuchkis app</h1>
                     <h1 className="arial-text-style">давай разбираться</h1>
+                    <div  className="coverblockbird"><Bird/></div>
                     <div className="buttoncover">
                         <a href="#1"><ChevronDown /></a>                   
                     </div>
@@ -80,7 +84,7 @@ const RulesScreen = () => {
                     <p className="p-text-style" style={{lineHeight: "20px"}}>Штучкис не&nbsp;является платформой для рекламы и&nbsp;продажи любых объектов, особенно запрещенных товаров. На&nbsp;платформе нельзя демонстрировать или пропагандировать опасную деятельность, а&nbsp;также торговать определенными запрещенными продуктами: товарами или веществами, которые могут нанести вред при использовании, модификации или изготовлении. Запрещается публиковать объявления о&nbsp;продаже и&nbsp;покупке алкоголя, табачных изделий, лекарственных препаратов, оружия и&nbsp;его комплектующих, смертоносных и&nbsp;токсических веществ, информацию об&nbsp;азартных онлайн-играх и&nbsp;лотереях. Советы по&nbsp;приобретению и&nbsp;инструкции по&nbsp;изготовлению запрещенных продуктов также недопустимы. Мы&nbsp;блокируем такой контент и&nbsp;соответствующие аккаунты.</p>         
                 </div>
                 <div className="gap" id="m4"></div>
-                <div className="block">
+                <div className="block" style={{marginLeft: "256px"}}>
                     <h1 className="h1-text-style">Благополучие сообщества</h1>
                     <h2 className="h2-text-style" style={{marginBottom: "16px"}}>Система жалоб</h2>
                     <p className="p-text-style" style={{lineHeight: "20px"}}>Помогите нам сохранить прочную основу сообщества и&nbsp;благоприятную среду для коллекционирования и&nbsp;созидания. Если вам кажется, что увиденный вами контент может нарушать Правила сообщества, помогите нам, воспользовавшись встроенной возможностью пожаловаться. Заполняя жалобу, постарайтесь точно определить тип нарушения и&nbsp;выбрать соответствующий пункт из&nbsp;предложенных. Наша команда рассматривает такие жалобы и&nbsp;старается как можно скорее удалять непристойный контент.</p>
@@ -97,7 +101,7 @@ const RulesScreen = () => {
                     </ul>
                 </div>
                 <div className="gap" id="m5"></div>
-                <div className="block" style={{marginLeft: "256px"}}>
+                <div className="block" style={{marginLeft: "128px"}}>
                     <h1 className="h1-text-style">Безопасность платформы</h1>
                     <p className="p-text-style" style={{lineHeight: "20px", marginBottom: "12px"}}>С&nbsp;целью защиты платформы Штучкис мы&nbsp;просим вас:</p>
                     <ul className="p-text-style" style={{lineHeight: "20px"}}>

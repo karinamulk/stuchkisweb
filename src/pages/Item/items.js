@@ -28,6 +28,9 @@ const RowWrapper = styled.div`
   overflow: hidden;
   align-items: center;
   cursor: pointer;
+  &:hover {
+    cursor: pointer;
+  }
 `;
 const ColumnWrapper = styled.div`
   display: flex;
@@ -53,6 +56,7 @@ const TableDescription = styled.div`
   padding: 0 12px;
   box-sizing: border-box;
   display: flex;
+  margin-bottom: 16px;
 `;
 const Note = styled.p`
   font-size: 12px;
@@ -91,7 +95,7 @@ const MainScreen = () => {
       filteredReportits = filteredReportits.filter(
         (reportit) => reportit.status === "accepted"
       );
-    } else if (selectedSort === "Отклоненные") {
+    } else if (selectedSort === "Отклонённые") {
       filteredReportits = filteredReportits.filter(
         (reportit) => reportit.status === "declared"
       );

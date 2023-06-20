@@ -18,6 +18,13 @@ const Container = styled.div`
   box-sizing: border-box;
   padding: 0 12px;
   backdrop-filter: blur(2px);
+  transition: all.4s;
+
+  &:hover{
+    backdrop-filter: blur(0px);
+    transition: all.2s;
+    cursor: pointer;
+  }
 
 `;
 const CollectionBlock = ({ id, title, coverurl, onClick = () => null }) => {

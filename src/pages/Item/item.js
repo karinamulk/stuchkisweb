@@ -10,7 +10,7 @@ import Counter from "../../components/Atoms/Counter/A_Counter";
 import Button from "../../components/Atoms/Button/A_Button";
 import BlockedSet from "../../components/Molecules/M_BlockedSet";
 import ButtonEllipse from "../../components/Atoms/Button/A_ButtonEllipse";
-import CopyLink from "../../components/Icons/Q_CopyLink"; 
+import CopyLink from "../../components/Icons/Q_CopyLink";
 const MainWrapper = styled.div`
   width: 100%;
   position: relative;
@@ -60,17 +60,17 @@ const CollectionRow = styled.div`
   width: 100%;
 `;
 const InfoItems = styled.div`
-width: 100%;
-padding-top: 4px;
-padding-left: 4px;
-display: flex;
+  width: 100%;
+  padding-top: 4px;
+  padding-left: 4px;
+  display: flex;
   flex-direction: column;
   gap: 24px;
 `;
 const CountersRow = styled.div`
-display: flex;
-justify-content: space-between;
-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 `;
 const CrumbsPart = styled.div`
   width: auto;
@@ -86,12 +86,22 @@ const CrumbsBlock = styled.div`
   gap: 8px;
   align-items: baseline;
 `;
+const Userrow = styled.div`
+  width: 100%;
+`;
+const ImgContainer = styled.div`
+width: 512px;
+height: 512px;
+overflow: hidden;
+display: flex;
+align-items: center;`;
+
 const Item = () => {
   const location = useLocation();
   const reportData = location.state?.reportData;
   const [tagselecteds, setTagselecteds] = useState([]);
   const [collections, setCollections] = useState([]);
-
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios
@@ -141,10 +151,37 @@ const Item = () => {
       .finally(() => console.log("false"));
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/v1/users")
+      .then(({ data }) => {
+        console.log(data);
+        setUsers(data.data);
+      })
+      .catch((error) => console.error(error))
+      .finally(() => console.log("false"));
+  }, []);
+
+  const listUsers = () => {
+    const filteredUsers = users.filter(
+      (user) => user.id === reportData.item.user_id
+    );
+
+    return filteredUsers.map((user) => {
+      return (
+        <Userblock
+          key={user.id}
+          username={user.username}
+          avatarurl={`http://localhost:3000` + `${user.avatar.url}`}
+        ></Userblock>
+      );
+    });
+  };
+
   return (
     <MainWrapper>
       <Content>
-      <CrumbsPart>
+        <CrumbsPart>
           <CrumbsBlock>
             <h1 style={{ margin: 0 }}>Все жалобы</h1>
             {reportData.status === "new" && (
@@ -157,25 +194,37 @@ const Item = () => {
               <h2 style={{ margin: 0 }}>Отклонённые</h2>
             )}
             <p style={{ margin: 0 }}>Жалобы на штучкис #{reportData.item.id}</p>
-            <p style={{ margin: 0, lineHeight: "var(--text-cap-lineheight)", fontSize: "var(--text-cap-size)"}}>Штучкис #{reportData.item.id}</p>
+            <p
+              style={{
+                margin: 0,
+                lineHeight: "var(--text-cap-lineheight)",
+                fontSize: "var(--text-cap-size)",
+              }}
+            >
+              Штучкис #{reportData.item.id}
+            </p>
           </CrumbsBlock>
 
           <ButtonEllipse type="small" icon={<CopyLink />}></ButtonEllipse>
         </CrumbsPart>
 
-      {reportData.item.blocked === true && (
-        <BlockedSet reason={reportData.reason} date="26.03.2023"></BlockedSet> )}
+        {reportData.item.blocked === true && (
+          <BlockedSet reason={reportData.reason} date="27.06.2023"></BlockedSet>
+        )}
 
         <Stuchkisblock style={{ marginBottom: "16px" }}>
-          <img
-            style={{
-              width: 512,
-              height: 512,
-              objectFit: "fit",
-            }}
-            src={`http://localhost:3000${reportData.item.image.url}`}
-            alt="placeholder-image"
-          />
+          <ImgContainer>
+            <img
+              style={{
+                width: 512,
+
+                objectFit: "fit",
+              }}
+              src={`http://localhost:3000${reportData.item.image.url}`}
+              alt="placeholder-image"
+            />
+          </ImgContainer>
+
           <References>
             <Top>
               <InfoBlock>
@@ -192,10 +241,7 @@ const Item = () => {
                 <Tagsrow>{listTags()}</Tagsrow>
               </InfoBlock>
               <LinkBlock>
-                <Userblock
-                  username={reportData.user.username}
-                  avatarurl={`http://localhost:3000${reportData.user.avatar.url}`}
-                ></Userblock>
+                <Userrow>{listUsers()}</Userrow>
                 <CollectionRow>{listCollections()}</CollectionRow>
               </LinkBlock>
             </Top>
@@ -205,7 +251,14 @@ const Item = () => {
             </CountersRow>
           </References>
         </Stuchkisblock>
-        <Button type="primary" typeText="colored" title="Заблокировать"></Button>
+        {reportData.item.blocked === false && (
+          <Button
+          type="primary"
+          typeText="colored"
+          title="Заблокировать"
+        ></Button>
+        )}
+        
       </Content>
     </MainWrapper>
   );

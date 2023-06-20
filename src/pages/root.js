@@ -14,10 +14,13 @@ const MainWrapper = styled.div`
 `;
 
 export default function Root() {
+  const currentUrl = window.location.href;
+  console.log(currentUrl);
   return (
     <>
       <MainWrapper>
-        <Navbar />
+        {currentUrl !== "http://localhost:8080/rules" && <Navbar />}
+
         <Outlet />
         <Footer />
       </MainWrapper>

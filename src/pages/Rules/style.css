@@ -7,37 +7,56 @@ body {
 .covercontainer {
     position: relative;
     box-sizing: border-box;
-    height: 867px;
+    height: 820px;
     width: 100%;
     padding: 16px;
     margin-bottom: 56px;
 }
 .coverblock {
     position: absolute;
-    height: 835px;
-    width: 1480px;
+    height: 788px;
+    width: 100%;
     background-image: url("../../images/coverbackground.png");
+    background-repeat: no-repeat;
+}
+.coverblockbird {
+    position: absolute;
+    left: 613.5px;
+    top: 221.5px;
 }
 .coverblock h1 {
     position: absolute;
 }
 .coverblock h1:nth-child(1) {
-    top: 370px;
-    left: 711px;
+    background-color: var(--main-beige);
+    padding: 0 12px;
+    border-radius: 2px;
+    top: 323px;
+    left: 663px;
     transform: rotate(-1deg);
+    z-index: 100;
 }
 .coverblock h1:nth-child(2) {
-    top: 402px;
-    left: 500px;
+    background-color: var(--main-beige);
+    padding: 0 12px;
+    border-radius: 2px;
+    top: 355.5px;
+    left: 452.5px;
     transform: rotate(1deg);
 }
 .coverblock h1:nth-child(3) {
-    top: 434.5px;
-    left: 651px;
+    background-color: var(--main-beige);
+    padding: 0 12px;
+    border-radius: 2px;
+    top: 387.5px;
+    left: 603.5px;
 }
 .coverblock h1:nth-child(4) {
-    top: 740px;
-    left: 601px;
+    background-color: var(--main-beige);
+    padding: 0 12px;
+    border-radius: 2px;
+    top: 693.5px;
+    left: 553px;
     transform: rotate(-2deg);
 
 }
@@ -47,8 +66,8 @@ body {
     background-color: var(--main-white);
     border-radius: 20px;   
     position: absolute;
-    top: 784px;
-    left: calc(50% - 20px);
+    top: 737px;
+    left: 684.5px;
     transition: all .4s ease;
 }
 .buttoncover:hover {

@@ -1,3 +1,7 @@
 .white {
     background-color: var(--main-white) !important;
 }
+.white:hover {
+    background-color: var(--main-white-hover) !important;
+
+}

@@ -9,8 +9,16 @@
     line-height: var(--text-h2-lineheight);
     letter-spacing: 0.57px;
     width: 100%;
-    cursor: pointer;
+    background-color:  var(--main-white);
+    transition: all.4s;
+    background-blend-mode: multiply;
 
+
+}
+.primaryBtn:hover {
+    background-color: var(--main-white-hover);
+    transition: all.2s;
+    cursor: pointer;
 }
 .secondaryBtn {
     background-color: var(--main-white);
@@ -23,6 +31,12 @@
     letter-spacing: 0.57px;
     width: 100%;
     cursor: pointer;
+    transition: all.4s;
+
+}
+.secondaryBtn:hover {
+    background-color: var(--main-white-hover);
+    transition: all.2s;
 }
 .quatenaryBtn {
     color: var(--main-darkblue);
@@ -51,6 +65,11 @@
     text-transform: uppercase;
     cursor: pointer;
     border-radius: 20px;
+    transition: all.4s;
+}
+.tertiaryBtn:hover {
+    background-color: var(--main-white-hover);
+    transition: all.2s;
 }
 .coloredText {
     color: transparent;    

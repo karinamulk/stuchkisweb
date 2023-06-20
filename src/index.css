@@ -1,11 +1,15 @@
 :root {
     --main-white: #FCFDFD;
+    --main-white-hover: #E7E8E8;
+
     --main-beige: #F5F5F4;
+    --main-beige-hover: #E0E0E0;
+
     --main-lightblue: #B2BCC2;
+    --main-lightblue-hover: #9FACB3;
+    
     --main-green: #9AA7A1;
     --main-darkblue: #566067;
-
-    --main-white-hover: #E7E8E8;
 
   
     --text-weight: 0;
@@ -32,6 +36,7 @@
     font-family: 'Arial Narrow';
     src: local('Arial Narrow Bold'), url(./fonts/ArialNarrowBold.ttf) format('truetype');
   }
+  @import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500&display=swap');
 
   .arial-text-style {
     font-family: 'Arial Narrow';
@@ -45,37 +50,37 @@
   }
 
   h1 {
-    font-family: 'Inter Tight';
+    font-family: 'Inter Tight', sans-serif;
     font-size: var(--text-h1-size);
-    font-weight: var(--text-weight);
+    font-weight: 400;
     line-height: var(--text-h1-lineheight);
     color: var(--main-darkblue);
     margin: 0;
   }
 
-  .h2-text-style {
-    font-family: 'Inter Tight';
+  h2 {
+    font-family: 'Inter Tight', sans-serif;
     font-size: var(--text-h2-size);
-    font-weight: var(--text-weight);
+    font-weight: 400;
     line-height: var(--text-h2-lineheight);
     color: var(--main-darkblue);
     margin: 0;
   }
 
-  .h3-text-style {
-    font-family: 'Inter Tight';
+  h3 {
+    font-family: 'Inter Tight', sans-serif;
     font-size: var(--text-h3-size);
-    font-weight: var(--text-weight);
+    font-weight: 400;
     line-height: var(--text-h3-lineheight);
     text-transform: uppercase;
     color: var(--main-darkblue);
     margin: 0;
   }
 
-  .p-text-style {
-    font-family: 'Inter Tight';
+  p {
+    font-family: 'Inter Tight', sans-serif;
     font-size: var(--text-p-size);
-    font-weight: var(--text-weight);
+    font-weight: 400;
     line-height: var(--text-p-lineheight);
     color: var(--main-darkblue);
     margin: 0;

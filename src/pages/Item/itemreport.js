@@ -91,6 +91,8 @@ const CrumbsBlock = styled.div`
   gap: 8px;
   align-items: baseline;
 `;
+const Userrow = styled.div`
+width: 100%;`;
 
 const ComplainContainer = styled.div``;
 
@@ -99,6 +101,7 @@ const Itemreport = () => {
   const reportData = location.state?.reportData;
   const [tagselecteds, setTagselecteds] = useState([]);
   const [collections, setCollections] = useState([]);
+  const [users, setUsers] = useState([]);
   const [allReports, setAllReports] = useState([]);
   const [isModalVisible, setModalVisible] = useState(false);
   const [isModalVisible2, setModalVisible2] = useState(false);
@@ -139,6 +142,17 @@ const Itemreport = () => {
       .finally(() => console.log("false"));
   }, []);
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/v1/users")
+      .then(({ data }) => {
+        console.log(data);
+        setUsers(data.data);
+      })
+      .catch((error) => console.error(error))
+      .finally(() => console.log("false"));
+  }, []);
+
   const listTags = () => {
     const filteredTagselecteds = tagselecteds.filter(
       (tagselected) => tagselected.item.id === reportData.item.id
@@ -161,6 +175,22 @@ const Itemreport = () => {
           title={collection.title}
           coverurl={`http://localhost:3000` + `${collection.cover.url}`}
         />
+      );
+    });
+  };
+
+  const listUsers = () => {
+    const filteredUsers = users.filter(
+      (user) => user.id === reportData.item.user_id
+    );
+
+    return filteredUsers.map((user) => {
+      return (
+        <Userblock
+          key={user.id}
+          username={user.username}
+          avatarurl={`http://localhost:3000` + `${user.avatar.url}`}
+        ></Userblock>
       );
     });
   };
@@ -210,7 +240,11 @@ const Itemreport = () => {
       return (
         <ComplainContainer key={allReport.id}>
           {isModalVisible && allReport.status === "new" && (
-            <Alert onClick={onClickSingle} text="Штучкис будет заблокирован по причине" reason={allReport.reason}></Alert>
+            <Alert
+              onClick={onClickSingle}
+              text="Штучкис будет заблокирован по причине"
+              reason={allReport.reason}
+            ></Alert>
           )}
           <ComplaintBlock
             key={allReport.id}
@@ -258,11 +292,7 @@ const Itemreport = () => {
           console.log(response);
         })
         .catch((error) => console.error(error))
-        .finally(setModalVisible2(false),
-        setModalVisible3(true)
-
-        
-        );
+        .finally(setModalVisible2(false), setModalVisible3(true));
     });
   };
   const onClickClose = () => {
@@ -290,10 +320,11 @@ const Itemreport = () => {
           <ButtonEllipse type="small" icon={<CopyLink />}></ButtonEllipse>
         </CrumbsPart>
 
-        
         {isModalVisible3 && (
-          <AlertNotification text="Штучкис заблокирован" onClickClose={onClickClose}></AlertNotification>
-          
+          <AlertNotification
+            text="Штучкис заблокирован"
+            onClickClose={onClickClose}
+          ></AlertNotification>
         )}
 
         <Stuchkisblock style={{ marginBottom: "48px" }}>
@@ -329,10 +360,7 @@ const Itemreport = () => {
               icon={<Link />}
               onClick={() => handleReportClick(reportData)}
             ></Button>
-            <Userblock
-              username={reportData.user.username}
-              avatarurl={`http://localhost:3000${reportData.user.avatar.url}`}
-            ></Userblock>
+            <Userrow>{listUsers()}</Userrow>
             <CollectionRow>{listCollections()}</CollectionRow>
             <CountersRow>
               <Counter text="лайка" number="24" />
@@ -347,7 +375,7 @@ const Itemreport = () => {
             allReports={allReports}
             reportData={reportData}
             onClick={onClick}
-            text="Штучкис будет заблокирован по причине" 
+            text="Штучкис будет заблокирован по причине"
             reason={reportData.reason}
           ></Popup>
         )}

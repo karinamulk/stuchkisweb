@@ -12,6 +12,13 @@ const Wrapper = styled.div`
     justify-content: space-between;
     box-sizing: border-box;
     padding: 0 12px;
+    transition: all.4s;
+
+    &:hover{
+      cursor: pointer;
+      background-color: var(--main-beige-hover);
+      transition: all.2s;
+    }
 `;
 
 const Userblock = ({id, type, username, avatarurl, onClick=() => null}) => {

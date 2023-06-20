@@ -7,11 +7,18 @@ const Span = styled.span`
     box-sizing: border-box;
     border-radius: 16px;
     margin-right: 8px;
+    transition: all.4s;
+    &:hover {
+        background-color: var(--main-white-hover) !important;
+        cursor: pointer;
+        transition: all.2s;
+
+    }
 `;
 
-const Tag = ({id, tagname, onClick=() => null, selectedSort}) => {
+const ToggleButton = ({id, tagname, onClick=() => null, selectedSort}) => {
     return (
         <Span style={{backgroundColor: selectedSort === tagname ? "var(--main-lightblue)" : "var(--main-white)", color: selectedSort === tagname ? "var(--main-white)" : "var(--main-lightblue)"}} onClick={onClick}>{tagname}</Span>
     )
 }
-export default Tag;
+export default ToggleButton;

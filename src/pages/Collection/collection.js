@@ -7,7 +7,7 @@ import Counter from "../../components/Atoms/Counter/A_Counter";
 import Button from "../../components/Atoms/Button/A_Button";
 import BlockedSet from "../../components/Molecules/M_BlockedSet";
 import ButtonEllipse from "../../components/Atoms/Button/A_ButtonEllipse";
-import CopyLink from "../../components/Icons/Q_CopyLink"; 
+import CopyLink from "../../components/Icons/Q_CopyLink";
 const MainWrapper = styled.div`
   width: 100%;
   position: relative;
@@ -50,7 +50,14 @@ const ReportsRow = styled.div`
   flex-direction: column;
   gap: 16px;
 `;
-const Items = styled.div``;
+const Items = styled.section`
+margin-top: 32px;
+width: 1016px;
+display: flex;
+flex-wrap: wrap;
+justify-content: flex-start;
+gap: 8px;
+`;
 const CrumbsPart = styled.div`
   width: auto;
   display: flex;
@@ -65,11 +72,18 @@ const CrumbsBlock = styled.div`
   gap: 8px;
   align-items: baseline;
 `;
+const Userrow = styled.div`
+  width: 100%;
+`;
+const ImgContainer = styled.article`
+width: 248px;
+`;
 
 const Collection = () => {
   const location = useLocation();
   const reportData = location.state?.reportData;
   const [items, setItems] = useState([]);
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios
@@ -89,7 +103,46 @@ const Collection = () => {
 
     return filteredItems.map((item) => {
       return (
-        <p key={item.id}>{item.id}</p>
+        <ImgContainer key={item.id}>
+          <img
+            style={{
+              width: "100%",
+
+              objectFit: "fit",
+              borderRadius: "8px"
+            }}
+            src={`http://localhost:3000${item.image.url}`}
+            alt="placeholder-image"
+          />
+        </ImgContainer>
+      );
+    });
+  };
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/v1/users")
+      .then(({ data }) => {
+        console.log(data);
+        setUsers(data.data);
+      })
+      .catch((error) => console.error(error))
+      .finally(() => console.log("false"));
+  }, []);
+
+  const listUsers = () => {
+    const filteredUsers = users.filter(
+      (user) => user.id === reportData.collection.user_id
+    );
+
+    return filteredUsers.map((user) => {
+      return (
+        <Userblock
+          key={user.id}
+          type="white"
+          username={user.username}
+          avatarurl={`http://localhost:3000` + `${user.avatar.url}`}
+        ></Userblock>
       );
     });
   };
@@ -97,7 +150,7 @@ const Collection = () => {
   return (
     <MainWrapper>
       <Content>
-      <CrumbsPart>
+        <CrumbsPart>
           <CrumbsBlock>
             <h1 style={{ margin: 0 }}>Все жалобы</h1>
             {reportData.status === "new" && (
@@ -109,34 +162,48 @@ const Collection = () => {
             {reportData.status === "declared" && (
               <h2 style={{ margin: 0 }}>Отклонённые</h2>
             )}
-            <p style={{ margin: 0 }}>Жалобы на коллекцию #{reportData.collection.id}</p>
-            <p style={{ margin: 0, lineHeight: "var(--text-cap-lineheight)", fontSize: "var(--text-cap-size)"}}>Коллекция #{reportData.collection.id}</p>
+            <p style={{ margin: 0 }}>
+              Жалобы на коллекцию #{reportData.collection.id}
+            </p>
+            <p
+              style={{
+                margin: 0,
+                lineHeight: "var(--text-cap-lineheight)",
+                fontSize: "var(--text-cap-size)",
+              }}
+            >
+              Коллекция #{reportData.collection.id}
+            </p>
           </CrumbsBlock>
 
           <ButtonEllipse type="small" icon={<CopyLink />}></ButtonEllipse>
         </CrumbsPart>
 
-      {reportData.collection.blocked === true && (
-        <BlockedSet reason={reportData.reason} date="26.03.2023"></BlockedSet> )}
+        {reportData.collection.blocked === true && (
+          <BlockedSet reason={reportData.reason} date="27.06.2023"></BlockedSet>
+        )}
 
-      <Collectionblock style={{ marginBottom: "16px" }}>
+        <Collectionblock style={{ marginBottom: "16px" }}>
           <Infoblock>
             <h1>{reportData.collection.title}</h1>
             <p style={{ margin: 0 }}>{reportData.collection.description}</p>
           </Infoblock>
           <References>
-            <Userblock
-              type="white"
-              username={reportData.user.username}
-              avatarurl={`http://localhost:3000${reportData.user.avatar.url}`}
-            ></Userblock>
+            <Userrow>{listUsers()}</Userrow>
             <CountersRow>
-              <Counter text="штучкисов" number="9" type="white"/>
-              <Counter text="подписчика" number="23" type="white"/>
+              <Counter text="штучкисов" number="9" type="white" />
+              <Counter text="подписчика" number="23" type="white" />
             </CountersRow>
           </References>
         </Collectionblock>
-        <Button type="primary" typeText="colored" title="Заблокировать"></Button>
+        {reportData.collection.blocked === false && (
+          <Button
+          type="primary"
+          typeText="colored"
+          title="Заблокировать"
+        ></Button>
+        )}
+        
         <Items>{listItems()}</Items>
       </Content>
     </MainWrapper>

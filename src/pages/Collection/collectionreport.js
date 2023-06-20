@@ -77,11 +77,14 @@ const CrumbsBlock = styled.div`
   gap: 8px;
   align-items: baseline;
 `;
+const Userrow = styled.div`
+width: 100%;`;
 
 const Collectionreport = () => {
   const location = useLocation();
   const reportData = location.state?.reportData;
   const [allReports, setAllReports] = useState([]);
+  const [users, setUsers] = useState([]);
   const [isModalVisible, setModalVisible] = useState(false);
   const [isModalVisible2, setModalVisible2] = useState(false);
   const [isModalVisible3, setModalVisible3] = useState(false);
@@ -210,6 +213,34 @@ const Collectionreport = () => {
     setModalVisible3(false);
   };
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/v1/users")
+      .then(({ data }) => {
+        console.log(data);
+        setUsers(data.data);
+      })
+      .catch((error) => console.error(error))
+      .finally(() => console.log("false"));
+  }, []);
+
+  const listUsers = () => {
+    const filteredUsers = users.filter(
+      (user) => user.id === reportData.collection.user_id
+    );
+
+    return filteredUsers.map((user) => {
+      return (
+        <Userblock
+          key={user.id}
+          username={user.username}
+          avatarurl={`http://localhost:3000` + `${user.avatar.url}`}
+        ></Userblock>
+      );
+    });
+  };
+
+
   return (
     <MainWrapper>
       <Content>
@@ -251,10 +282,7 @@ const Collectionreport = () => {
               icon={<Link />}
               onClick={() => handleReportClick(reportData)}
             ></Button>
-            <Userblock
-              username={reportData.user.username}
-              avatarurl={`http://localhost:3000${reportData.user.avatar.url}`}
-            ></Userblock>
+            <Userrow>{listUsers()}</Userrow>
             <CountersRow>
               <Counter text="штучкисов" number="9" />
               <Counter text="подписчика" number="23" />
@@ -272,7 +300,7 @@ const Collectionreport = () => {
           ></Popup>
         )}
         <ReportsNavbar
-          amount="2"
+          amount="3"
           type="reportcols"
           onClickFirst={popup2}
           status={reportData.status}
