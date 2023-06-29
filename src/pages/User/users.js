@@ -15,6 +15,7 @@ const MainWrapper = styled.div`
   justify-content: center;
 `;
 
+
 const Content = styled.div`
   width: 1016px;
 `;
